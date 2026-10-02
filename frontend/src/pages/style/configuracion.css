@@ -1,0 +1,109 @@
+.configuracion {
+    width: 100%;
+}
+
+.configuracion-header h1 {
+    margin: 0;
+    font-size: 26px;
+    color: #1f2937;
+}
+
+.configuracion-header p {
+    margin-top: 6px;
+    color: #6b7280;
+}
+
+.configuracion-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 25px;
+}
+
+.config-card {
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 22px;
+}
+
+.config-card h2 {
+    margin: 0;
+    font-size: 18px;
+    color: #1f2937;
+}
+
+.descripcion {
+    margin: 7px 0 20px;
+    color: #6b7280;
+    font-size: 14px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+}
+
+.form-group label {
+    margin-bottom: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #374151;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 7px;
+    font-size: 14px;
+    font-family: inherit;
+}
+
+.form-group textarea {
+    min-height: 90px;
+    resize: vertical;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #2563eb;
+}
+
+.btn-guardar {
+    border: none;
+    background-color: #2563eb;
+    color: white;
+    padding: 10px 18px;
+    border-radius: 7px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.btn-guardar:hover {
+    background-color: #1d4ed8;
+}
+
+.servicios-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+    margin-bottom: 22px;
+}
+
+.servicios-lista label {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    font-size: 14px;
+    color: #374151;
+}
+
+.servicios-lista input {
+    width: 16px;
+    height: 16px;
+}

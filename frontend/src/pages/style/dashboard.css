@@ -1,0 +1,101 @@
+/* Dashboard completo */
+.dashboard {
+    min-height: 100vh;
+    background-color: #f5f6f8;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Barra superior */
+.topbar {
+    height: 70px;
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    padding: 0 30px;
+    border-bottom: 1px solid #e5e7eb;
+    gap: 15px;
+}
+
+/* Logo */
+.topbar img {
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+}
+
+/* Nombre de la empresa */
+.topbar h2 {
+    margin: 0;
+    font-size: 21px;
+    font-weight: 600;
+    color: #1f2937;
+}
+
+/* Zona inferior */
+.dashboard-body {
+    display: flex;
+    flex: 1;
+}
+
+/* Menú lateral */
+.sidebar {
+    width: 230px;
+    background-color: #ffffff;
+    border-right: 1px solid #e5e7eb;
+    padding: 20px 12px;
+}
+
+/* Botones del menú */
+.sidebar button {
+    width: 100%;
+    border: none;
+    background: transparent;
+    padding: 13px 15px;
+    margin-bottom: 5px;
+
+    display: flex;
+    align-items: center;
+
+    font-size: 15px;
+    color: #4b5563;
+
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: left;
+
+    transition: 0.2s;
+}
+
+/* Cuando pasas el mouse */
+.sidebar button:hover {
+    background-color: #f1f5f9;
+    color: #111827;
+}
+
+/* Botón seleccionado */
+.sidebar button.active {
+    background-color: #e8f0fe;
+    color: #2563eb;
+    font-weight: 600;
+}
+
+/* Contenido */
+.main-content {
+    flex: 1;
+    padding: 30px;
+    overflow-y: auto;
+}
+
+/* Título de cada página */
+.main-content h1 {
+    margin-top: 0;
+    font-size: 26px;
+    color: #1f2937;
+}
+
+/* Texto */
+.main-content p {
+    color: #6b7280;
+    font-size: 15px;
+}

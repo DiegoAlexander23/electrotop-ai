@@ -1,0 +1,140 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f3f5f8;
+  }
+  
+  #root {
+    min-height: 100vh;
+  }
+  
+  
+  .login-container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 70px;
+  }
+  
+  
+  
+  .login-brand {
+    width: 220px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  
+  .login-brand img:first-child {
+    width: 110px;
+    height: 110px;
+    object-fit: contain;
+    margin-bottom: 10px;
+  }
+  
+  
+  .login-brand img:last-child {
+    width: 190px;
+    height: auto;
+    object-fit: contain;
+  }
+  
+  
+  .login-box {
+    width: 380px;
+    padding: 35px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+  }
+  
+  
+  .welcome {
+    display: block;
+    text-align: center;
+    font-size: 27px;
+    font-weight: bold;
+    color: #222;
+    margin-bottom: 8px;
+  }
+  
+  
+  .credentials {
+    display: block;
+    text-align: center;
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 28px;
+  }
+  
+  
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  form label {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 7px;
+  }
+  
+  form input[type="text"],
+  form input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #d0d5db;
+    border-radius: 8px;
+    font-size: 15px;
+    outline: none;
+  }
+  
+  form input[type="text"]:focus,
+  form input[type="password"]:focus {
+    border-color: #0066ff;
+  }
+  
+  
+  form input[type="submit"] {
+    width: 100%;
+    padding: 13px;
+    margin-top: 5px;
+    border: none;
+    border-radius: 8px;
+    background: #0066ff;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  form input[type="submit"]:hover {
+    background: #0052cc;
+  }
+  
+  
+  @media (max-width: 750px) {
+    .login-container {
+      flex-direction: column;
+      gap: 30px;
+      padding: 30px;
+    }
+  
+    .login-brand {
+      width: 200px;
+    }
+  
+    .login-box {
+      width: 100%;
+      max-width: 380px;
+    }
+  }
