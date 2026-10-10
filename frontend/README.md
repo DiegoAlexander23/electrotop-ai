@@ -39,7 +39,7 @@ Desde esta carpeta ejecutar:
 npm install
 
 ## Dependencias
-npm install recharts
+npm install recharts 
 
 ## Ejecución
 npm run dev

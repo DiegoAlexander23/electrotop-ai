@@ -34,7 +34,7 @@ npm install
 
 ## Dependencias
 npm install express cors dotenv mysql2 bcrypt
-npm install express nodemon -D
+npm install nodemon -D
 
 ## Ejecucion
 npm run dev

@@ -1,0 +1,594 @@
+
+.practicantes-page {
+    width: 100%;
+    min-width: 0;
+    color: #1e293b;
+}
+
+.practicantes-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    margin-bottom: 24px;
+}
+
+.practicantes-header h2 {
+    margin: 0 0 7px;
+    color: #172554;
+    font-size: 23px;
+    font-weight: 700;
+}
+
+.practicantes-header p {
+    max-width: 600px;
+    margin: 0;
+    color: #64748b;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.btn-nuevo-practicante,
+.btn-guardar-practicante {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 42px;
+    padding: 0 16px;
+    color: #ffffff;
+    background: #2563eb;
+    border: 1px solid #2563eb;
+    border-radius: 9px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.btn-nuevo-practicante:hover,
+.btn-guardar-practicante:hover {
+    background: #1d4ed8;
+}
+
+.btn-nuevo-practicante span {
+    font-size: 19px;
+}
+
+/* Resumen */
+
+.practicantes-resumen {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    width: fit-content;
+    min-width: 240px;
+    margin-bottom: 22px;
+    padding: 16px 20px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+}
+
+.resumen-practicantes-icono {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 43px;
+    height: 43px;
+    color: #2563eb;
+    background: #eff6ff;
+    border-radius: 11px;
+    font-size: 23px;
+}
+
+.practicantes-resumen span {
+    display: block;
+    margin-bottom: 5px;
+    color: #64748b;
+    font-size: 12px;
+}
+
+.practicantes-resumen strong {
+    color: #172554;
+    font-size: 24px;
+}
+
+/* Lista de registros */
+
+.lista-practicantes {
+    overflow: hidden;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 13px;
+}
+
+.lista-practicantes-titulo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 20px 22px;
+    border-bottom: 1px solid #e8edf4;
+}
+
+.lista-practicantes-titulo h3 {
+    margin: 0;
+    color: #172554;
+    font-size: 16px;
+}
+
+.lista-practicantes-titulo > span {
+    padding: 6px 10px;
+    color: #475569;
+    background: #f1f5f9;
+    border-radius: 20px;
+    font-size: 11px;
+}
+
+.practicantes-lista {
+    display: flex;
+    flex-direction: column;
+}
+
+.practicante-item {
+    display: grid;
+    grid-template-columns: minmax(210px, 1.1fr) minmax(220px, 1.5fr) auto;
+    align-items: center;
+    gap: 22px;
+    padding: 20px 22px;
+    border-bottom: 1px solid #edf1f6;
+    transition: background 0.2s;
+}
+
+.practicante-item:last-child {
+    border-bottom: none;
+}
+
+.practicante-item:hover {
+    background: #fbfdff;
+}
+
+.practicante-identidad {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+}
+
+.practicante-avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 43px;
+    height: 43px;
+    flex-shrink: 0;
+    color: #1d4ed8;
+    background: #eff6ff;
+    border: 1px solid #dbeafe;
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.practicante-nombre {
+    min-width: 0;
+}
+
+.practicante-nombre h4 {
+    margin: 0 0 6px;
+    color: #334155;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.practicante-nombre > span {
+    display: block;
+    color: #64748b;
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+.practicante-horario-resumen {
+    min-width: 0;
+}
+
+.campo-resumen-label {
+    display: block;
+    margin-bottom: 7px;
+    color: #94a3b8;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+}
+
+.practicante-horario-resumen p {
+    margin: 0;
+    color: #475569;
+    font-size: 11px;
+    line-height: 1.8;
+    overflow-wrap: anywhere;
+}
+
+.btn-editar-practicante {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    min-height: 36px;
+    padding: 0 12px;
+    color: #2563eb;
+    background: #ffffff;
+    border: 1px solid #bfdbfe;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 600;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.btn-editar-practicante:hover {
+    background: #eff6ff;
+}
+
+.btn-editar-practicante span {
+    font-size: 15px;
+}
+
+.practicantes-vacio {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 44px 20px;
+    text-align: center;
+}
+
+.practicantes-vacio > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 55px;
+    height: 55px;
+    margin-bottom: 14px;
+    color: #2563eb;
+    background: #eff6ff;
+    border-radius: 50%;
+    font-size: 26px;
+}
+
+.practicantes-vacio h3 {
+    margin: 0 0 8px;
+    color: #334155;
+    font-size: 15px;
+}
+
+.practicantes-vacio p {
+    margin: 0 0 18px;
+    color: #64748b;
+    font-size: 12px;
+}
+
+/* Formulario */
+
+.formulario-practicante-panel {
+    overflow: hidden;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 13px;
+}
+
+.formulario-practicante-header {
+    padding: 22px 24px;
+    background: #ffffff;
+    border-bottom: 1px solid #e8edf4;
+}
+
+.formulario-etiqueta {
+    display: block;
+    margin-bottom: 8px;
+    color: #2563eb;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+}
+
+.formulario-practicante-header h3 {
+    margin: 0 0 7px;
+    color: #172554;
+    font-size: 19px;
+}
+
+.formulario-practicante-header p {
+    margin: 0;
+    color: #64748b;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.formulario-seccion {
+    padding: 24px;
+    border-bottom: 1px solid #edf1f6;
+}
+
+.formulario-seccion > h4,
+.horario-formulario-titulo h4 {
+    margin: 0 0 17px;
+    color: #334155;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.formulario-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.campo-formulario {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
+}
+
+.campo-formulario > span,
+.campo-hora > span {
+    color: #475569;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.campo-formulario input,
+.campo-formulario textarea,
+.campo-hora input {
+    width: 100%;
+    min-width: 0;
+    padding: 11px 12px;
+    color: #334155;
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    outline: none;
+    font-family: inherit;
+    font-size: 12px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.campo-formulario input:focus,
+.campo-formulario textarea:focus,
+.campo-hora input:focus {
+    border-color: #60a5fa;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.campo-formulario textarea {
+    min-height: 85px;
+    resize: vertical;
+    line-height: 1.6;
+}
+
+.campo-actividades {
+    margin-top: 20px;
+}
+
+/* Horario por día */
+
+.horario-formulario-titulo {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+.horario-formulario-titulo h4 {
+    margin-bottom: 6px;
+}
+
+.horario-formulario-titulo p {
+    margin: 0;
+    color: #64748b;
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+.horario-formulario-badge {
+    padding: 7px 10px;
+    color: #1d4ed8;
+    background: #eff6ff;
+    border: 1px solid #dbeafe;
+    border-radius: 7px;
+    font-size: 10px;
+    font-weight: 600;
+}
+
+.horario-formulario-lista {
+    overflow: hidden;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+}
+
+.horario-formulario-fila {
+    display: grid;
+    grid-template-columns: minmax(100px, 1fr) minmax(120px, 1fr) 15px minmax(120px, 1fr) auto;
+    align-items: end;
+    gap: 13px;
+    padding: 14px 16px;
+    border-bottom: 1px solid #edf1f6;
+}
+
+.horario-formulario-fila:last-child {
+    border-bottom: none;
+}
+
+.horario-dia-nombre {
+    display: flex;
+    align-items: center;
+    align-self: center;
+    gap: 9px;
+    color: #334155;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.horario-dia-punto {
+    width: 7px;
+    height: 7px;
+    flex-shrink: 0;
+    background: #60a5fa;
+    border-radius: 50%;
+}
+
+.campo-hora {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    min-width: 0;
+}
+
+.campo-hora input {
+    padding: 9px;
+}
+
+.separador-horas {
+    align-self: center;
+    padding-top: 18px;
+    color: #94a3b8;
+    font-size: 11px;
+    text-align: center;
+}
+
+.btn-limpiar-dia {
+    min-height: 34px;
+    padding: 0 9px;
+    color: #64748b;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 7px;
+    font-size: 10px;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.btn-limpiar-dia:hover {
+    color: #b91c1c;
+    background: #fef2f2;
+    border-color: #fecaca;
+}
+
+/* Acciones del formulario */
+
+.formulario-acciones {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 20px 24px;
+    background: #fbfdff;
+}
+
+.btn-cancelar-formulario {
+    min-height: 42px;
+    padding: 0 17px;
+    color: #475569;
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 9px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn-cancelar-formulario:hover {
+    background: #f1f5f9;
+}
+
+/* Diseño responsive */
+
+@media (max-width: 1050px) {
+    .practicante-item {
+        grid-template-columns: minmax(180px, 1fr) minmax(180px, 1fr);
+    }
+
+    .practicante-horario-resumen {
+        grid-column: 1 / -1;
+        grid-row: 2;
+    }
+
+    .btn-editar-practicante {
+        grid-column: 2;
+        grid-row: 1;
+        justify-self: end;
+    }
+
+    .horario-formulario-fila {
+        grid-template-columns: minmax(100px, 0.8fr) minmax(110px, 1fr) 12px minmax(110px, 1fr);
+    }
+
+    .btn-limpiar-dia {
+        grid-column: 2 / -1;
+        justify-self: end;
+    }
+}
+
+@media (max-width: 650px) {
+    .practicantes-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .practicantes-header h2 {
+        font-size: 20px;
+    }
+
+    .practicante-item {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 15px;
+        padding: 17px;
+    }
+
+    .practicante-horario-resumen {
+        grid-column: auto;
+        grid-row: auto;
+    }
+
+    .btn-editar-practicante {
+        grid-column: auto;
+        grid-row: auto;
+        justify-self: start;
+    }
+
+    .formulario-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .formulario-seccion,
+    .formulario-practicante-header {
+        padding: 18px 15px;
+    }
+
+    .horario-formulario-fila {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        gap: 12px;
+        padding: 14px;
+    }
+
+    .horario-dia-nombre {
+        grid-column: 1 / -1;
+    }
+
+    .separador-horas {
+        display: none;
+    }
+
+    .btn-limpiar-dia {
+        grid-column: 1 / -1;
+        justify-self: start;
+    }
+
+    .formulario-acciones {
+        padding: 16px 15px;
+    }
+}
