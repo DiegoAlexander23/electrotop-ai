@@ -3,11 +3,8 @@ import "./style/dashboard.css";
 
 import Inicio from "./inicio.jsx";
 import Practicantes from "./practicantes.jsx";
-//import Horarios from "./horarios.jsx";
-//import Asistencias from "./asistencias.jsx";
-//import Historial from "./historial.jsx";
-//import Reportes from "./reportes.jsx";
 import Configuracion from "./configuracion.jsx";
+import Horarios from "./horarios.jsx";
 
 import logo from "../assets/logo.png";
 
@@ -42,10 +39,7 @@ function Dashboard() {
     const opcionesMenu = [
         { id: "inicio", icono: "⌂", nombre: "Dashboard" },
         { id: "practicantes", icono: "♙", nombre: "Practicantes" },
-        { id: "horarios", icono: "◷", nombre: "Horarios" },
-        { id: "asistencias", icono: "✓", nombre: "Asistencias" },
-        { id: "historial", icono: "↺", nombre: "Historial" },
-        { id: "reportes", icono: "▤", nombre: "Reportes" },
+        { id: "horarios", icono: "⏱", nombre: "Horarios" },
         { id: "configuracion", icono: "⚙", nombre: "Configuración" }
     ];
 
@@ -107,25 +101,12 @@ function Dashboard() {
                 </div>
             </aside>
 
-            <div className="dashboard-main">
-                <header className="topbar">
-                    <div>
-                        <span className="breadcrumb">
-                            Panel principal / {nombrePagina}
-                        </span>
-
-                        <h1>{nombrePagina}</h1>
-                    </div>
-                </header>
-
+            <div className="dashboard-main">    
                 <main className="main-content">
                     {page === "inicio" && <Inicio />}
                     {page === "practicantes" && <Practicantes />}
-                    {page === "horarios" && <Horarios />}
-                    {page === "asistencias" && <Asistencias />}
-                    {page === "historial" && <Historial />}
-                    {page === "reportes" && <Reportes />}
                     {page === "configuracion" && <Configuracion />}
+                    {page === "horarios" && <Horarios />}
                 </main>
             </div>
         </div>

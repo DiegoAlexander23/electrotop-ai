@@ -1,594 +1,459 @@
 
-.practicantes-page {
+/* ===== CONTENEDOR PRINCIPAL ===== */
+.practicantes {
     width: 100%;
-    min-width: 0;
-    color: #1e293b;
+    color: #263449;
 }
 
+.practicantes * {
+    box-sizing: border-box;
+}
+
+/* ===== ENCABEZADO ===== */
 .practicantes-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 18px;
+    gap: 20px;
     margin-bottom: 24px;
 }
 
 .practicantes-header h2 {
     margin: 0 0 7px;
-    color: #172554;
-    font-size: 23px;
+    color: #1e293b;
+    font-size: 22px;
     font-weight: 700;
 }
 
 .practicantes-header p {
-    max-width: 600px;
     margin: 0;
-    color: #64748b;
-    font-size: 13px;
-    line-height: 1.6;
+    color: #718096;
+    font-size: 14px;
+    line-height: 1.5;
 }
 
-.btn-nuevo-practicante,
-.btn-guardar-practicante {
+.btn-nuevo-practicante {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
     min-height: 42px;
-    padding: 0 16px;
-    color: #ffffff;
+    padding: 0 17px;
+    border: none;
+    border-radius: 8px;
     background: #2563eb;
-    border: 1px solid #2563eb;
-    border-radius: 9px;
-    font-size: 12px;
+    color: #ffffff;
+    font-size: 14px;
     font-weight: 600;
     cursor: pointer;
     transition: background 0.2s, transform 0.2s;
+    white-space: nowrap;
 }
 
-.btn-nuevo-practicante:hover,
-.btn-guardar-practicante:hover {
+.btn-nuevo-practicante:hover {
     background: #1d4ed8;
 }
 
-.btn-nuevo-practicante span {
-    font-size: 19px;
+.btn-nuevo-practicante:active {
+    transform: scale(0.98);
 }
 
-/* Resumen */
-
-.practicantes-resumen {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    width: fit-content;
-    min-width: 240px;
-    margin-bottom: 22px;
-    padding: 16px 20px;
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
-    border-radius: 12px;
-}
-
-.resumen-practicantes-icono {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 43px;
-    height: 43px;
-    color: #2563eb;
-    background: #eff6ff;
-    border-radius: 11px;
-    font-size: 23px;
-}
-
-.practicantes-resumen span {
-    display: block;
-    margin-bottom: 5px;
-    color: #64748b;
-    font-size: 12px;
-}
-
-.practicantes-resumen strong {
-    color: #172554;
-    font-size: 24px;
-}
-
-/* Lista de registros */
-
-.lista-practicantes {
+/* ===== PANEL Y BÚSQUEDA ===== */
+.practicantes-panel {
+    width: 100%;
     overflow: hidden;
+    border: 1px solid #e5eaf1;
+    border-radius: 12px;
     background: #ffffff;
-    border: 1px solid #e2e8f0;
-    border-radius: 13px;
+    box-shadow: 0 3px 12px rgba(15, 23, 42, 0.035);
 }
 
-.lista-practicantes-titulo {
+.practicantes-toolbar {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 12px;
-    padding: 20px 22px;
-    border-bottom: 1px solid #e8edf4;
+    gap: 16px;
+    padding: 18px 20px;
+    border-bottom: 1px solid #edf0f5;
 }
 
-.lista-practicantes-titulo h3 {
-    margin: 0;
-    color: #172554;
-    font-size: 16px;
+.practicantes-toolbar input {
+    width: 100%;
+    max-width: 360px;
+    min-height: 40px;
+    padding: 0 13px;
+    border: 1px solid #dce3ec;
+    border-radius: 8px;
+    outline: none;
+    background: #ffffff;
+    color: #263449;
+    font: inherit;
+    font-size: 14px;
+    transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-.lista-practicantes-titulo > span {
-    padding: 6px 10px;
-    color: #475569;
-    background: #f1f5f9;
-    border-radius: 20px;
+.practicantes-toolbar input::placeholder {
+    color: #9aa6b6;
+}
+
+.practicantes-toolbar input:focus,
+.formulario-practicante input:focus,
+.formulario-practicante select:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.12);
+}
+
+.practicantes-toolbar > span {
+    color: #718096;
+    font-size: 13px;
+    white-space: nowrap;
+}
+
+/* ===== TABLA ===== */
+.practicantes-tabla-contenedor {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.practicantes-tabla {
+    width: 100%;
+    min-width: 720px;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.practicantes-tabla thead {
+    background: #f8fafc;
+}
+
+.practicantes-tabla th {
+    padding: 15px 20px;
+    color: #64748b;
     font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.045em;
+    text-transform: uppercase;
+    white-space: nowrap;
 }
 
-.practicantes-lista {
-    display: flex;
-    flex-direction: column;
+.practicantes-tabla td {
+    padding: 16px 20px;
+    border-top: 1px solid #edf0f5;
+    color: #475569;
+    font-size: 13px;
+    vertical-align: middle;
 }
 
-.practicante-item {
-    display: grid;
-    grid-template-columns: minmax(210px, 1.1fr) minmax(220px, 1.5fr) auto;
+.practicantes-tabla tbody tr {
+    transition: background 0.15s;
+}
+
+.practicantes-tabla tbody tr:hover {
+    background: #f8fbff;
+}
+
+.practicantes-tabla td:first-child {
+    color: #243247;
+    font-weight: 600;
+}
+
+.practicantes-vacio {
+    height: 100px;
+    color: #94a3b8 !important;
+    text-align: center;
+    font-weight: 400 !important;
+}
+
+/* ===== ESTADOS ===== */
+.estado-practicante {
+    display: inline-flex;
     align-items: center;
-    gap: 22px;
-    padding: 20px 22px;
-    border-bottom: 1px solid #edf1f6;
-    transition: background 0.2s;
+    gap: 6px;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
 }
 
-.practicante-item:last-child {
-    border-bottom: none;
+.estado-practicante::before {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    content: "";
 }
 
-.practicante-item:hover {
-    background: #fbfdff;
+.estado-activo {
+    background: #dcfce7;
+    color: #166534;
 }
 
-.practicante-identidad {
+.estado-activo::before {
+    background: #16a34a;
+}
+
+.estado-inactivo {
+    background: #f1f5f9;
+    color: #64748b;
+}
+
+.estado-inactivo::before {
+    background: #94a3b8;
+}
+
+/* ===== BOTONES DE ACCIONES ===== */
+.acciones-practicante {
     display: flex;
     align-items: center;
-    gap: 12px;
-    min-width: 0;
+    gap: 8px;
 }
 
-.practicante-avatar {
+.acciones-practicante button {
+    padding: 7px 10px;
+    border: 1px solid #dbe4f0;
+    border-radius: 6px;
+    background: #ffffff;
+    color: #2563eb;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+    white-space: nowrap;
+}
+
+.acciones-practicante button:hover {
+    border-color: #93b4f8;
+    background: #eff6ff;
+}
+
+.acciones-practicante button:last-child {
+    color: #64748b;
+}
+
+.acciones-practicante button:last-child:hover {
+    border-color: #cbd5e1;
+    background: #f1f5f9;
+}
+
+/* ===== FONDO DEL MODAL ===== */
+.modal-fondo {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 43px;
-    height: 43px;
-    flex-shrink: 0;
-    color: #1d4ed8;
-    background: #eff6ff;
-    border: 1px solid #dbeafe;
-    border-radius: 50%;
-    font-size: 12px;
+    overflow-y: auto;
+    padding: 24px;
+    background: rgba(15, 23, 42, 0.55);
+    backdrop-filter: blur(3px);
+}
+
+/* ===== VENTANA MODAL ===== */
+.modal-practicante {
+    width: 100%;
+    max-width: 560px;
+    max-height: calc(100vh - 48px);
+    overflow-y: auto;
+    border: 1px solid rgba(226, 232, 240, 0.8);
+    border-radius: 14px;
+    background: #ffffff;
+    box-shadow: 0 24px 70px rgba(15, 23, 42, 0.25);
+    animation: modal-aparecer 0.18s ease-out;
+}
+
+@keyframes modal-aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal-practicante-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 24px 26px 20px;
+    border-bottom: 1px solid #edf0f5;
+}
+
+.modal-practicante-header h2 {
+    margin: 0 0 7px;
+    color: #1e293b;
+    font-size: 20px;
     font-weight: 700;
 }
 
-.practicante-nombre {
-    min-width: 0;
+.modal-practicante-header p {
+    margin: 0;
+    color: #718096;
+    font-size: 13px;
+    line-height: 1.5;
 }
 
-.practicante-nombre h4 {
-    margin: 0 0 6px;
+.modal-cerrar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 34px;
+    height: 34px;
+    border: none;
+    border-radius: 7px;
+    background: #f1f5f9;
+    color: #64748b;
+    font-size: 25px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.modal-cerrar:hover {
+    background: #e2e8f0;
+    color: #1e293b;
+}
+
+/* ===== FORMULARIO ===== */
+.formulario-practicante {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 19px;
+    padding: 24px 26px;
+}
+
+.formulario-practicante label {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
     color: #334155;
     font-size: 13px;
     font-weight: 600;
 }
 
-.practicante-nombre > span {
-    display: block;
-    color: #64748b;
-    font-size: 11px;
-    line-height: 1.5;
-}
-
-.practicante-horario-resumen {
-    min-width: 0;
-}
-
-.campo-resumen-label {
-    display: block;
-    margin-bottom: 7px;
-    color: #94a3b8;
-    font-size: 10px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.4px;
-}
-
-.practicante-horario-resumen p {
-    margin: 0;
-    color: #475569;
-    font-size: 11px;
-    line-height: 1.8;
-    overflow-wrap: anywhere;
-}
-
-.btn-editar-practicante {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 7px;
-    min-height: 36px;
-    padding: 0 12px;
-    color: #2563eb;
-    background: #ffffff;
-    border: 1px solid #bfdbfe;
-    border-radius: 8px;
-    font-size: 11px;
-    font-weight: 600;
-    white-space: nowrap;
-    cursor: pointer;
-}
-
-.btn-editar-practicante:hover {
-    background: #eff6ff;
-}
-
-.btn-editar-practicante span {
-    font-size: 15px;
-}
-
-.practicantes-vacio {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    padding: 44px 20px;
-    text-align: center;
-}
-
-.practicantes-vacio > div {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 55px;
-    height: 55px;
-    margin-bottom: 14px;
-    color: #2563eb;
-    background: #eff6ff;
-    border-radius: 50%;
-    font-size: 26px;
-}
-
-.practicantes-vacio h3 {
-    margin: 0 0 8px;
-    color: #334155;
-    font-size: 15px;
-}
-
-.practicantes-vacio p {
-    margin: 0 0 18px;
-    color: #64748b;
-    font-size: 12px;
-}
-
-/* Formulario */
-
-.formulario-practicante-panel {
-    overflow: hidden;
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
-    border-radius: 13px;
-}
-
-.formulario-practicante-header {
-    padding: 22px 24px;
-    background: #ffffff;
-    border-bottom: 1px solid #e8edf4;
-}
-
-.formulario-etiqueta {
-    display: block;
-    margin-bottom: 8px;
-    color: #2563eb;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.8px;
-}
-
-.formulario-practicante-header h3 {
-    margin: 0 0 7px;
-    color: #172554;
-    font-size: 19px;
-}
-
-.formulario-practicante-header p {
-    margin: 0;
-    color: #64748b;
-    font-size: 12px;
-    line-height: 1.6;
-}
-
-.formulario-seccion {
-    padding: 24px;
-    border-bottom: 1px solid #edf1f6;
-}
-
-.formulario-seccion > h4,
-.horario-formulario-titulo h4 {
-    margin: 0 0 17px;
-    color: #334155;
-    font-size: 14px;
-    font-weight: 700;
-}
-
-.formulario-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 18px;
-}
-
-.campo-formulario {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    min-width: 0;
-}
-
-.campo-formulario > span,
-.campo-hora > span {
-    color: #475569;
-    font-size: 11px;
-    font-weight: 600;
-}
-
-.campo-formulario input,
-.campo-formulario textarea,
-.campo-hora input {
+.formulario-practicante input,
+.formulario-practicante select {
     width: 100%;
     min-width: 0;
-    padding: 11px 12px;
-    color: #334155;
-    background: #ffffff;
-    border: 1px solid #cbd5e1;
-    border-radius: 8px;
+    min-height: 42px;
+    padding: 0 12px;
+    border: 1px solid #dce3ec;
+    border-radius: 7px;
     outline: none;
-    font-family: inherit;
-    font-size: 12px;
+    background: #ffffff;
+    color: #334155;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 400;
     transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-.campo-formulario input:focus,
-.campo-formulario textarea:focus,
-.campo-hora input:focus {
-    border-color: #60a5fa;
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+.formulario-practicante input::placeholder {
+    color: #9aa6b6;
 }
 
-.campo-formulario textarea {
-    min-height: 85px;
-    resize: vertical;
-    line-height: 1.6;
-}
-
-.campo-actividades {
-    margin-top: 20px;
-}
-
-/* Horario por día */
-
-.horario-formulario-titulo {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin-bottom: 18px;
-}
-
-.horario-formulario-titulo h4 {
-    margin-bottom: 6px;
-}
-
-.horario-formulario-titulo p {
-    margin: 0;
-    color: #64748b;
-    font-size: 11px;
-    line-height: 1.5;
-}
-
-.horario-formulario-badge {
-    padding: 7px 10px;
-    color: #1d4ed8;
-    background: #eff6ff;
-    border: 1px solid #dbeafe;
-    border-radius: 7px;
-    font-size: 10px;
-    font-weight: 600;
-}
-
-.horario-formulario-lista {
-    overflow: hidden;
-    border: 1px solid #e2e8f0;
-    border-radius: 10px;
-}
-
-.horario-formulario-fila {
-    display: grid;
-    grid-template-columns: minmax(100px, 1fr) minmax(120px, 1fr) 15px minmax(120px, 1fr) auto;
-    align-items: end;
-    gap: 13px;
-    padding: 14px 16px;
-    border-bottom: 1px solid #edf1f6;
-}
-
-.horario-formulario-fila:last-child {
-    border-bottom: none;
-}
-
-.horario-dia-nombre {
+/* ===== BOTONES DEL MODAL ===== */
+.modal-practicante-acciones {
     display: flex;
     align-items: center;
-    align-self: center;
-    gap: 9px;
-    color: #334155;
-    font-size: 12px;
-    font-weight: 600;
-}
-
-.horario-dia-punto {
-    width: 7px;
-    height: 7px;
-    flex-shrink: 0;
-    background: #60a5fa;
-    border-radius: 50%;
-}
-
-.campo-hora {
-    display: flex;
-    flex-direction: column;
-    gap: 7px;
-    min-width: 0;
-}
-
-.campo-hora input {
-    padding: 9px;
-}
-
-.separador-horas {
-    align-self: center;
-    padding-top: 18px;
-    color: #94a3b8;
-    font-size: 11px;
-    text-align: center;
-}
-
-.btn-limpiar-dia {
-    min-height: 34px;
-    padding: 0 9px;
-    color: #64748b;
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
-    border-radius: 7px;
-    font-size: 10px;
-    white-space: nowrap;
-    cursor: pointer;
-}
-
-.btn-limpiar-dia:hover {
-    color: #b91c1c;
-    background: #fef2f2;
-    border-color: #fecaca;
-}
-
-/* Acciones del formulario */
-
-.formulario-acciones {
-    display: flex;
     justify-content: flex-end;
-    flex-wrap: wrap;
     gap: 10px;
-    padding: 20px 24px;
-    background: #fbfdff;
+    padding: 18px 26px 24px;
+    border-top: 1px solid #edf0f5;
 }
 
-.btn-cancelar-formulario {
-    min-height: 42px;
-    padding: 0 17px;
-    color: #475569;
-    background: #ffffff;
-    border: 1px solid #cbd5e1;
-    border-radius: 9px;
-    font-size: 12px;
+.modal-practicante-acciones button {
+    min-height: 40px;
+    padding: 0 18px;
+    border-radius: 7px;
+    font-size: 13px;
     font-weight: 600;
     cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
 }
 
-.btn-cancelar-formulario:hover {
-    background: #f1f5f9;
+.btn-cancelar {
+    border: 1px solid #dce3ec;
+    background: #ffffff;
+    color: #475569;
 }
 
-/* Diseño responsive */
-
-@media (max-width: 1050px) {
-    .practicante-item {
-        grid-template-columns: minmax(180px, 1fr) minmax(180px, 1fr);
-    }
-
-    .practicante-horario-resumen {
-        grid-column: 1 / -1;
-        grid-row: 2;
-    }
-
-    .btn-editar-practicante {
-        grid-column: 2;
-        grid-row: 1;
-        justify-self: end;
-    }
-
-    .horario-formulario-fila {
-        grid-template-columns: minmax(100px, 0.8fr) minmax(110px, 1fr) 12px minmax(110px, 1fr);
-    }
-
-    .btn-limpiar-dia {
-        grid-column: 2 / -1;
-        justify-self: end;
-    }
+.btn-cancelar:hover {
+    background: #f8fafc;
 }
 
-@media (max-width: 650px) {
+.btn-guardar {
+    border: 1px solid #2563eb;
+    background: #2563eb;
+    color: #ffffff;
+}
+
+.btn-guardar:hover {
+    border-color: #1d4ed8;
+    background: #1d4ed8;
+}
+
+/* ===== ADAPTACIÓN A TABLET Y MÓVIL ===== */
+@media (max-width: 700px) {
     .practicantes-header {
         align-items: flex-start;
         flex-direction: column;
     }
 
-    .practicantes-header h2 {
-        font-size: 20px;
+    .btn-nuevo-practicante {
+        width: 100%;
     }
 
-    .practicante-item {
+    .practicantes-toolbar {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .practicantes-toolbar input {
+        max-width: none;
+    }
+
+    .practicantes-toolbar > span {
+        align-self: flex-end;
+    }
+}
+
+@media (max-width: 480px) {
+    .modal-fondo {
+        align-items: flex-start;
+        padding: 12px;
+    }
+
+    .modal-practicante {
+        max-height: calc(100vh - 24px);
+        border-radius: 11px;
+    }
+
+    .modal-practicante-header {
+        padding: 20px 18px 16px;
+    }
+
+    .modal-practicante-header h2 {
+        font-size: 18px;
+    }
+
+    .formulario-practicante {
         grid-template-columns: minmax(0, 1fr);
-        gap: 15px;
-        padding: 17px;
+        gap: 16px;
+        padding: 20px 18px;
     }
 
-    .practicante-horario-resumen {
-        grid-column: auto;
-        grid-row: auto;
+    .modal-practicante-acciones {
+        padding: 16px 18px 20px;
     }
 
-    .btn-editar-practicante {
-        grid-column: auto;
-        grid-row: auto;
-        justify-self: start;
-    }
-
-    .formulario-grid {
-        grid-template-columns: minmax(0, 1fr);
-    }
-
-    .formulario-seccion,
-    .formulario-practicante-header {
-        padding: 18px 15px;
-    }
-
-    .horario-formulario-fila {
-        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-        gap: 12px;
-        padding: 14px;
-    }
-
-    .horario-dia-nombre {
-        grid-column: 1 / -1;
-    }
-
-    .separador-horas {
-        display: none;
-    }
-
-    .btn-limpiar-dia {
-        grid-column: 1 / -1;
-        justify-self: start;
-    }
-
-    .formulario-acciones {
-        padding: 16px 15px;
+    .modal-practicante-acciones button {
+        flex: 1;
+        padding: 0 10px;
     }
 }

@@ -1,205 +1,211 @@
-import { useState } from "react";
+
+import { useState, useEffect } from "react";
 import "./style/practicantes.css";
 
-import ListaPracticantes from "./componentes/ListaPracticantes.jsx";
-import FormularioPracticante from "./componentes/FormularioPracticante.jsx";
-import { diasSemana } from "./componentes/HorarioSemanal.jsx";
+import TablaPracticantes from "../components/TablaPracticantes";
+import FormularioPracticante from "../components/FormularioPracticante";
 
-const datosIniciales = [
-    {
-        id: 1,
-        nombre: "Carlos Mendoza",
-        area: "Publicidad y creación de contenido",
-        fechaInicio: "2026-08-01",
-        fechaFin: "2027-01-31",
-        actividades: "Crear publicaciones e imágenes para promocionar productos.",
-        horarios: {
-            lunes: { entrada: "09:00", salida: "15:00" },
-            martes: { entrada: "09:00", salida: "15:00" },
-            miercoles: { entrada: "09:00", salida: "15:00" },
-            jueves: { entrada: "09:00", salida: "15:00" },
-            viernes: { entrada: "09:00", salida: "13:00" }
-        }
-    },
-    {
-        id: 2,
-        nombre: "María Torres",
-        area: "Redes y soporte técnico",
-        fechaInicio: "2026-08-15",
-        fechaFin: "2027-02-15",
-        actividades: "Apoyar en la configuración de redes y tareas de soporte.",
-        horarios: {
-            lunes: { entrada: "08:00", salida: "14:00" },
-            martes: { entrada: "08:00", salida: "14:00" },
-            miercoles: { entrada: "08:00", salida: "14:00" },
-            jueves: { entrada: "08:00", salida: "14:00" },
-            viernes: { entrada: "08:00", salida: "12:00" }
-        }
-    },
-    {
-        id: 3,
-        nombre: "Luis Ramírez",
-        area: "Instalación de cámaras de seguridad",
-        fechaInicio: "2026-09-01",
-        fechaFin: "2027-03-01",
-        actividades: "Apoyar al personal técnico durante las instalaciones.",
-        horarios: {
-            lunes: { entrada: "10:00", salida: "16:00" },
-            martes: { entrada: "10:00", salida: "16:00" },
-            miercoles: { entrada: "", salida: "" },
-            jueves: { entrada: "10:00", salida: "16:00" },
-            viernes: { entrada: "10:00", salida: "14:00" }
-        }
-    }
-];
-
-function crearHorariosVacios() {
-    return Object.fromEntries(
-        diasSemana.map(({ id }) => [
-            id,
-            { entrada: "", salida: "" }
-        ])
-    );
-}
-
-function crearFormulario(practicante = null) {
-    if (!practicante) {
-        return {
-            nombre: "",
-            area: "",
-            fechaInicio: "",
-            fechaFin: "",
-            actividades: "",
-            horarios: crearHorariosVacios()
-        };
-    }
-
-    return {
-        ...practicante,
-        horarios: Object.fromEntries(
-            diasSemana.map(({ id }) => [
-                id,
-                {
-                    entrada: practicante.horarios[id]?.entrada || "",
-                    salida: practicante.horarios[id]?.salida || ""
-                }
-            ])
-        )
-    };
-}
+import {
+    obtenerPracticantes,
+    registrarPracticante,
+    actualizarPracticante,
+    cambiarEstadoPracticante
+} from "../services/practicantesService";
 
 function Practicantes() {
-    const [practicantes, setPracticantes] = useState(datosIniciales);
-    const [mostrarFormulario, setMostrarFormulario] = useState(false);
-    const [idEditado, setIdEditado] = useState(null);
-    const [formulario, setFormulario] = useState(() => crearFormulario());
+    const [practicantes, setPracticantes] = useState([]);
+    const [busqueda, setBusqueda] = useState("");
+    const [modalAbierto, setModalAbierto] = useState(false);
+    const [editando, setEditando] = useState(null);
+    const [cargando, setCargando] = useState(true);
+    const [error, setError] = useState("");
 
-    function nuevoPracticante() {
-        setIdEditado(null);
-        setFormulario(crearFormulario());
-        setMostrarFormulario(true);
+    const formularioInicial = {
+        nombre: "",
+        apellido: "",
+        telefono: "",
+        area: "",
+        estado: "Activo"
+    };
+
+    const [formulario, setFormulario] = useState(formularioInicial);
+
+    useEffect(() => {
+        cargarPracticantes();
+    }, []);
+
+    async function cargarPracticantes() {
+        try {
+            setCargando(true);
+            setError("");
+
+            const datos = await obtenerPracticantes();
+            setPracticantes(datos);
+        } catch (error) {
+            setError(error.message || "No se pudieron cargar los practicantes.");
+        } finally {
+            setCargando(false);
+        }
     }
 
-    function editarPracticante(persona) {
-        setIdEditado(persona.id);
-        setFormulario(crearFormulario(persona));
-        setMostrarFormulario(true);
+    const listaFiltrada = practicantes.filter((practicante) => {
+        const texto = busqueda.toLowerCase();
+
+        return (
+            `${practicante.nombre} ${practicante.apellido}`
+                .toLowerCase()
+                .includes(texto) ||
+            practicante.telefono.includes(busqueda)
+        );
+    });
+
+    function abrirNuevo() {
+        setEditando(null);
+        setFormulario(formularioInicial);
+        setModalAbierto(true);
     }
 
-    function actualizarCampo(campo, valor) {
-        setFormulario((actual) => ({
-            ...actual,
-            [campo]: valor
+    function abrirEdicion(practicante) {
+        setEditando(practicante.id);
+
+        setFormulario({
+            nombre: practicante.nombre,
+            apellido: practicante.apellido,
+            telefono: practicante.telefono,
+            area: practicante.area,
+            estado: practicante.estado
+        });
+
+        setModalAbierto(true);
+    }
+
+    function cerrarFormulario() {
+        setModalAbierto(false);
+        setEditando(null);
+        setFormulario(formularioInicial);
+    }
+
+    function manejarCambio(e) {
+        const { name, value } = e.target;
+
+        setFormulario((anterior) => ({
+            ...anterior,
+            [name]: value
         }));
     }
 
-    function actualizarHorario(dia, campo, valor) {
-        setFormulario((actual) => ({
-            ...actual,
-            horarios: {
-                ...actual.horarios,
-                [dia]: {
-                    ...actual.horarios[dia],
-                    [campo]: valor
-                }
-            }
-        }));
-    }
-
-    function guardarPracticante(evento) {
-        evento.preventDefault();
+    async function guardarPracticante(e) {
+        e.preventDefault();
 
         const nombre = formulario.nombre.trim();
-        const area = formulario.area.trim();
+        const apellido = formulario.apellido.trim();
+        const telefono = formulario.telefono.trim();
 
-        if (!nombre || !area) return;
-
-        const registro = {
-            ...formulario,
-            nombre,
-            area,
-            actividades: formulario.actividades.trim()
-        };
-
-        if (idEditado !== null) {
-            setPracticantes((actuales) =>
-                actuales.map((persona) =>
-                    persona.id === idEditado
-                        ? { ...registro, id: idEditado }
-                        : persona
-                )
-            );
-        } else {
-            setPracticantes((actuales) => [
-                ...actuales,
-                { ...registro, id: Date.now() }
-            ]);
+        if (!nombre || !apellido || !telefono || !formulario.area) {
+            alert("Completa todos los campos obligatorios.");
+            return;
         }
 
-        cancelarFormulario();
+        if (!/^\+?[0-9\s-]{7,15}$/.test(telefono)) {
+            alert("Ingresa un número de teléfono válido.");
+            return;
+        }
+
+        const datosPracticante = {
+            ...formulario,
+            nombre,
+            apellido,
+            telefono
+        };
+
+        try {
+            if (editando !== null) {
+                await actualizarPracticante(editando, datosPracticante);
+            } else {
+                await registrarPracticante(datosPracticante);
+            }
+
+            cerrarFormulario();
+            await cargarPracticantes();
+        } catch (error) {
+            alert(error.message || "No se pudo guardar el practicante.");
+        }
     }
 
-    function cancelarFormulario() {
-        setMostrarFormulario(false);
-        setIdEditado(null);
-        setFormulario(crearFormulario());
+    async function cambiarEstado(id) {
+        const practicante = practicantes.find((item) => item.id === id);
+
+        if (!practicante) return;
+
+        const nuevoEstado =
+            practicante.estado === "Activo" ? "Inactivo" : "Activo";
+
+        try {
+            await cambiarEstadoPracticante(id, nuevoEstado);
+            await cargarPracticantes();
+        } catch (error) {
+            alert(error.message || "No se pudo cambiar el estado.");
+        }
     }
 
     return (
-        <div className="practicantes-page">
-            <header className="practicantes-header">
+        <div className="practicantes">
+            <section className="practicantes-header">
                 <div>
-                    <h2>Mienbros</h2>
+                    <h2>Gestión de practicantes</h2>
                     <p>
-                        Registra a los mienbros y administra sus horarios
-                        y funciones habituales.
+                        Registra y administra la información de los practicantes.
                     </p>
                 </div>
 
-                {!mostrarFormulario && (
-                    <button
-                        className="btn-nuevo-practicante"
-                        onClick={nuevoPracticante}
-                    >
-                        + Nuevo mienbros
-                    </button>
-                )}
-            </header>
+                <button
+                    type="button"
+                    className="btn-nuevo-practicante"
+                    onClick={abrirNuevo}
+                >
+                    + Nuevo practicante
+                </button>
+            </section>
 
-            {mostrarFormulario ? (
+            <section className="practicantes-panel">
+                <div className="practicantes-toolbar">
+                    <input
+                        type="search"
+                        placeholder="Buscar por nombre o teléfono..."
+                        value={busqueda}
+                        onChange={(e) => setBusqueda(e.target.value)}
+                    />
+
+                    <span>{listaFiltrada.length} registros</span>
+                </div>
+
+                {cargando ? (
+                    <p className="practicantes-vacio">
+                        Cargando practicantes...
+                    </p>
+                ) : error ? (
+                    <div className="practicantes-vacio">
+                        <p>{error}</p>
+                        <button type="button" onClick={cargarPracticantes}>
+                            Reintentar
+                        </button>
+                    </div>
+                ) : (
+                    <TablaPracticantes
+                        practicantes={listaFiltrada}
+                        onEditar={abrirEdicion}
+                        onCambiarEstado={cambiarEstado}
+                    />
+                )}
+            </section>
+
+            {modalAbierto && (
                 <FormularioPracticante
                     formulario={formulario}
-                    idEditado={idEditado}
-                    onActualizarCampo={actualizarCampo}
-                    onActualizarHorario={actualizarHorario}
-                    onGuardar={guardarPracticante}
-                    onCancelar={cancelarFormulario}
-                />
-            ) : (
-                <ListaPracticantes
-                    practicantes={practicantes}
-                    onNuevo={nuevoPracticante}
-                    onEditar={editarPracticante}
+                    editando={editando}
+                    onChange={manejarCambio}
+                    onSubmit={guardarPracticante}
+                    onCerrar={cerrarFormulario}
                 />
             )}
         </div>

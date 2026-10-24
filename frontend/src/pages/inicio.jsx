@@ -14,9 +14,14 @@ function Inicio() {
 
                 <span className="inicio-fecha">
                     <span className="inicio-punto"></span>
-                    Asistencia del día
+                    {new Date().toLocaleDateString("es-PE", {
+                        day: "numeric",
+                        month: "long",
+                        year: "numeric"
+                    })}
                 </span>
             </section>
+
             <section className="estadisticas">
                 <article className="tarjeta tarjeta-presentes">
                     <div className="tarjeta-icono">✓</div>
@@ -54,6 +59,7 @@ function Inicio() {
                     </div>
                 </article>
             </section>
+
             <section className="asistencia-panel">
                 <div className="asistencia-header">
                     <div>
@@ -77,23 +83,6 @@ function Inicio() {
                         </thead>
 
                         <tbody>
-                            <tr>
-                                <td colSpan="5" className="tabla-vacia">
-                                    <div className="tabla-vacia-icono">
-                                        <span>◷</span>
-                                    </div>
-
-                                    <strong>
-                                        Datos de asistencia no disponibles
-                                    </strong>
-
-                                    <p>
-                                        La información aparecerá aquí cuando
-                                        conectemos los horarios y las
-                                        marcaciones reales del sistema.
-                                    </p>
-                                </td>
-                            </tr>
                         </tbody>
                     </table>
                 </div>
