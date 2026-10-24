@@ -1,53 +1,93 @@
 
-function TablaHorarios({ horarios, onEditar, onEliminar }) {
+function TablaHorarios({ horarios, onVerHorario, onEditar, onEliminar }) {
+    const practicantesMap = new Map();
+
+    horarios.forEach((horario) => {
+        const id = String(horario.practicante_id);
+
+        if (!practicantesMap.has(id)) {
+            practicantesMap.set(id, {
+                practicante_id: horario.practicante_id,
+                nombre: horario.nombre,
+                apellido: horario.apellido,
+                horarios: []
+            });
+        }
+
+        practicantesMap.get(id).horarios.push(horario);
+    });
+
+    const practicantesAgrupados = Array.from(
+        practicantesMap.values()
+    );
+
     return (
         <div className="horarios-tabla-contenedor">
             <table className="horarios-tabla">
                 <thead>
                     <tr>
                         <th>Practicante</th>
-                        <th>Día</th>
-                        <th>Entrada</th>
-                        <th>Salida</th>
+                        <th>Días asignados</th>
+                        <th>Jornadas</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
 
                 <tbody>
-                    {horarios.length === 0 ? (
+                    {practicantesAgrupados.length === 0 ? (
                         <tr>
-                            <td colSpan={5} className="horarios-vacio">
+                            <td colSpan={4} className="horarios-vacio">
                                 No hay horarios asignados.
                             </td>
                         </tr>
                     ) : (
-                        horarios.map((horario) => (
-                            <tr key={horario.id}>
-                                <td>
-                                    {horario.nombre} {horario.apellido}
-                                </td>
-                                <td>{horario.dia_semana}</td>
-                                <td>{String(horario.hora_entrada).slice(0, 5)}</td>
-                                <td>{String(horario.hora_salida).slice(0, 5)}</td>
-                                <td>
-                                    <div className="acciones-horario">
-                                        <button
-                                            type="button"
-                                            onClick={() => onEditar(horario)}
-                                        >
-                                            Editar
-                                        </button>
+                        practicantesAgrupados.map((practicante) => {
+                            const dias = practicante.horarios.map(
+                                (h) => h.dia_semana
+                            );
 
-                                        <button
-                                            type="button"
-                                            onClick={() => onEliminar(horario.id)}
-                                        >
-                                            Eliminar
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                        ))
+                            return (
+                                <tr key={practicante.practicante_id}>
+                                    <td>
+                                        {practicante.nombre}{" "}
+                                        {practicante.apellido}
+                                    </td>
+
+                                    <td>
+                                        {dias.length}{" "}
+                                        {dias.length === 1  
+                                            ? "día"
+                                            : "días"}
+                                    </td>
+
+                                    <td>
+                                        {dias.join(", ")}
+                                    </td>
+
+                                    <td>
+                                        <div className="acciones-horario">
+                                            <button
+                                                type="button"
+                                                onClick={() =>
+                                                    onVerHorario(practicante)
+                                                }
+                                            >
+                                                Ver horario
+                                            </button>
+
+                                            <button
+                                                type="button"
+                                                onClick={() =>
+                                                    onEditar(practicante)
+                                                }
+                                            >
+                                                Editar
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            );
+                        })
                     )}
                 </tbody>
             </table>

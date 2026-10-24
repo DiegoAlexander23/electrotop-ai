@@ -5,6 +5,7 @@ import Inicio from "./inicio.jsx";
 import Practicantes from "./practicantes.jsx";
 import Configuracion from "./configuracion.jsx";
 import Horarios from "./horarios.jsx";
+import Historial from "./historial.jsx";
 
 import logo from "../assets/logo.png";
 
@@ -37,10 +38,11 @@ function Dashboard() {
     }
 
     const opcionesMenu = [
-        { id: "inicio", icono: "⌂", nombre: "Dashboard" },
+        { id: "inicio", icono: "⌂", nombre: "Dashboard" },  
         { id: "practicantes", icono: "♙", nombre: "Practicantes" },
         { id: "horarios", icono: "⏱", nombre: "Horarios" },
-        { id: "configuracion", icono: "⚙", nombre: "Configuración" }
+        { id: "historial", icono: "▤", nombre: "Historial de asistencias" }
+        //{ id: "configuracion", icono: "⚙", nombre: "Configuración" }
     ];
 
     const nombrePagina =
@@ -105,8 +107,9 @@ function Dashboard() {
                 <main className="main-content">
                     {page === "inicio" && <Inicio />}
                     {page === "practicantes" && <Practicantes />}
-                    {page === "configuracion" && <Configuracion />}
                     {page === "horarios" && <Horarios />}
+                    {page === "historial" && <Historial />}
+                    
                 </main>
             </div>
         </div>

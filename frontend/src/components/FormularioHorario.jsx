@@ -1,12 +1,29 @@
 
+const diasSemana = [
+    { valor: "Lunes", letra: "L" },
+    { valor: "Martes", letra: "M" },
+    { valor: "Miércoles", letra: "X" },
+    { valor: "Jueves", letra: "J" },
+    { valor: "Viernes", letra: "V" },
+    { valor: "Sábado", letra: "S" },
+    { valor: "Domingo", letra: "D" }
+];
+
+
+
 function FormularioHorario({
     formulario,
     practicantes,
     editando,
     onChange,
+    onToggleDia,
+    onChangeDia,
     onSubmit,
-    onCerrar
+    onCerrar,
+    guardando
 }) {
+    const horarios = formulario.horarios || [];
+
     return (
         <div
             className="modal-fondo"
@@ -26,10 +43,13 @@ function FormularioHorario({
                     <div>
                         <h2 id="titulo-modal-horario">
                             {editando !== null
-                                ? "Editar horario"
-                                : "Asignar horario"}
+                                ? "Editar horario semanal"
+                                : "Asignar horario semanal"}
                         </h2>
-                        <p>Define el día y las horas de la jornada.</p>
+                        <p>
+                            Selecciona los días de trabajo y configura
+                            las horas de cada jornada.
+                        </p>
                     </div>
 
                     <button
@@ -37,6 +57,7 @@ function FormularioHorario({
                         className="modal-cerrar"
                         onClick={onCerrar}
                         aria-label="Cerrar ventana"
+                        disabled={guardando}
                     >
                         ×
                     </button>
@@ -52,58 +73,118 @@ function FormularioHorario({
                                 onChange={onChange}
                                 required
                             >
-                                <option value="">Seleccionar practicante</option>
+                                <option value="">
+                                    Seleccionar practicante
+                                </option>
 
                                 {practicantes
                                     .filter((p) => p.estado === "Activo")
                                     .map((p) => (
-                                        <option key={p.id} value={p.id}>
+                                        <option
+                                            key={p.id}
+                                            value={p.id}
+                                        >
                                             {p.nombre} {p.apellido}
                                         </option>
                                     ))}
                             </select>
                         </label>
 
-                        <label>
-                            Día de la semana
-                            <select
-                                name="dia_semana"
-                                value={formulario.dia_semana}
-                                onChange={onChange}
-                                required
-                            >
-                                <option value="">Seleccionar día</option>
-                                <option value="Lunes">Lunes</option>
-                                <option value="Martes">Martes</option>
-                                <option value="Miércoles">Miércoles</option>
-                                <option value="Jueves">Jueves</option>
-                                <option value="Viernes">Viernes</option>
-                                <option value="Sábado">Sábado</option>
-                                <option value="Domingo">Domingo</option>
-                            </select>
-                        </label>
+                        <div className="campo-dias">
+                            <span className="etiqueta-dias">
+                                Días de trabajo
+                            </span>
 
-                        <label>
-                            Hora de entrada
-                            <input
-                                type="time"
-                                name="hora_entrada"
-                                value={formulario.hora_entrada}
-                                onChange={onChange}
-                                required
-                            />
-                        </label>
+                            <div className="selector-dias">
+                                {diasSemana.map((dia) => {
+                                    const seleccionado = horarios.some(
+                                        (h) =>
+                                            h.dia_semana === dia.valor &&
+                                            h.seleccionado
+                                    );
 
-                        <label>
-                            Hora de salida
-                            <input
-                                type="time"
-                                name="hora_salida"
-                                value={formulario.hora_salida}
-                                onChange={onChange}
-                                required
-                            />
-                        </label>
+                                    return (
+                                        <button
+                                            key={dia.valor}
+                                            type="button"
+                                            className={
+                                                seleccionado
+                                                    ? "dia-seleccionado"
+                                                    : ""
+                                            }
+                                            aria-pressed={seleccionado}
+                                            aria-label={dia.valor}
+                                            onClick={() =>
+                                                onToggleDia(dia.valor)
+                                            }
+                                        >
+                                            {dia.letra}
+                                        </button>
+                                    );
+                                })}
+                            </div>
+
+                            <p className="ayuda-dias">
+                                Marca cada día que trabaja el practicante.
+                            </p>
+                        </div>
+
+                        <div className="horarios-por-dia">
+                            {diasSemana.map((dia) => {
+                                const horario = horarios.find(
+                                    (h) => h.dia_semana === dia.valor
+                                );
+
+                                if (!horario?.seleccionado) {
+                                    return null;
+                                }
+
+                                return (
+                                    <div
+                                        className="horario-dia"
+                                        key={dia.valor}
+                                    >
+                                        <h3>{dia.valor}</h3>
+
+                                        <label>
+                                            Entrada
+                                            <input
+                                                type="time"
+                                                value={
+                                                    horario.hora_entrada
+                                                }
+                                                onChange={(e) =>
+                                                    onChangeDia(
+                                                        dia.valor,
+                                                        "hora_entrada",
+                                                        e.target.value
+                                                    )
+                                                }
+                                                required
+                                            />
+                                        </label>
+
+                                        <label>
+                                            Salida
+                                            <input
+                                                type="time"
+                                                value={
+                                                    horario.hora_salida
+                                                }
+                                                onChange={(e) =>
+                                                    onChangeDia(
+                                                        dia.valor,
+                                                        "hora_salida",
+                                                        e.target.value
+                                                    )
+                                                }
+                                                required
+                                            />
+                                        </label>
+                                    </div>
+                                );
+                            })}
+                        </div>
                     </div>
 
                     <div className="modal-horario-acciones">
@@ -115,8 +196,16 @@ function FormularioHorario({
                             Cancelar
                         </button>
 
-                        <button type="submit" className="btn-guardar">
-                            Guardar horario
+                        <button
+                            type="submit"
+                            className="btn-guardar"
+                            disabled={guardando}
+                        >
+                            {guardando
+                                ? "Guardando..."
+                                : editando !== null
+                                    ? "Guardar cambios"
+                                    : "Guardar horario semanal"}
                         </button>
                     </div>
                 </form>
