@@ -9,7 +9,8 @@ import { obtenerPracticantes } from "../services/practicantesService";
 import {
     obtenerHorarios,
     registrarHorariosSemana,
-    actualizarHorariosSemana
+    actualizarHorariosSemana,
+    eliminarHorariosPracticante
 } from "../services/horariosService";
 import CalendarioSemanal from "../components/CalendarioSemanal";
 
@@ -257,9 +258,30 @@ function Horarios() {
             setGuardando(false);
         }   
     }
+    
+    async function eliminarHorario(practicanteId) {
+        const confirmar = window.confirm(
+            "¿Seguro que deseas eliminar todos los horarios de este practicante?"
+        );
 
-    function eliminarHorario(id) {
-        alert(`Todavía falta conectar la eliminación del horario ${id}.`);
+        if (!confirmar) return;
+
+        try {
+            await eliminarHorariosPracticante(practicanteId);
+
+            if (
+                String(practicanteSeleccionado?.practicante_id) ===
+                String(practicanteId)
+            ) {
+                setPracticanteSeleccionado(null);
+            }
+
+            await cargarDatos();
+
+            alert("Horarios eliminados correctamente.");
+        } catch (error) {
+            alert(error.message || "No se pudieron eliminar los horarios.");
+        }
     }
 
     return (

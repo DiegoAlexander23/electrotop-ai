@@ -6,6 +6,7 @@ import Practicantes from "./practicantes.jsx";
 import Configuracion from "./configuracion.jsx";
 import Horarios from "./horarios.jsx";
 import Historial from "./historial.jsx";
+import Reportes from "./reportes.jsx";
 
 import logo from "../assets/logo.png";
 
@@ -41,7 +42,8 @@ function Dashboard() {
         { id: "inicio", icono: "⌂", nombre: "Dashboard" },  
         { id: "practicantes", icono: "♙", nombre: "Practicantes" },
         { id: "horarios", icono: "⏱", nombre: "Horarios" },
-        { id: "historial", icono: "▤", nombre: "Historial de asistencias" }
+        { id: "historial", icono: "▤", nombre: "Historial de asistencias" },
+        { id: "reportes", icono: "📊︎", nombre: "Reportes" },
         //{ id: "configuracion", icono: "⚙", nombre: "Configuración" }
     ];
 
@@ -109,6 +111,7 @@ function Dashboard() {
                     {page === "practicantes" && <Practicantes />}
                     {page === "horarios" && <Horarios />}
                     {page === "historial" && <Historial />}
+                    {page === "reportes" && <Reportes />}
                     
                 </main>
             </div>

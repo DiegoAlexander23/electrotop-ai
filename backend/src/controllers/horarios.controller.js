@@ -417,3 +417,75 @@ export async function actualizarHorariosSemana(req, res) {
         }
     }
 }
+
+
+export async function eliminarHorariosPracticante(req, res) {
+    let conexion;
+
+    try {
+        const practicanteId = req.params.practicanteId;
+
+        if (!/^[1-9]\d*$/.test(String(practicanteId ?? ""))) {
+            return res.status(400).json({
+                success: false,
+                mensaje: "El ID del practicante no es válido."
+            });
+        }
+
+        conexion = await pool.getConnection();
+        await conexion.beginTransaction();
+
+        const [practicantes] = await conexion.query(
+            `SELECT id
+             FROM practicantes
+             WHERE id = ?
+             FOR UPDATE`,
+            [Number(practicanteId)]
+        );
+
+        if (practicantes.length === 0) {
+            await conexion.rollback();
+
+            return res.status(404).json({
+                success: false,
+                mensaje: "El practicante no existe."
+            });
+        }
+
+        const [resultado] = await conexion.query(
+            `DELETE FROM horarios
+             WHERE practicante_id = ?`,
+            [Number(practicanteId)]
+        );
+
+        await conexion.commit();
+
+        return res.json({
+            success: true,
+            mensaje: resultado.affectedRows > 0
+                ? "Horarios eliminados correctamente."
+                : "El practicante no tenía horarios asignados.",
+            eliminados: resultado.affectedRows
+        });
+
+    } catch (error) {
+        if (conexion) {
+            await conexion.rollback();
+        }
+
+        console.error(
+            "Error al eliminar horarios:",
+            error.message
+        );
+
+        return res.status(500).json({
+            success: false,
+            mensaje: "No se pudieron eliminar los horarios."
+        });
+
+    } finally {
+        if (conexion) {
+            conexion.release();
+        }
+    }
+}

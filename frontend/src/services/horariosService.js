@@ -75,3 +75,21 @@ export async function actualizarHorariosSemana(practicanteId, datos) {
 
     return data;
 }
+export async function eliminarHorariosPracticante(practicanteId) {
+    const respuesta = await fetch(
+        `${API_URL}/semana/${practicanteId}`,
+        {
+            method: "DELETE"
+        }
+    );
+
+    const data = await respuesta.json();
+
+    if (!respuesta.ok || !data.success) {
+        throw new Error(
+            data.mensaje || "Error al eliminar los horarios."
+        );
+    }
+
+    return data;
+}

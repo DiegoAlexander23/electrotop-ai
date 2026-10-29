@@ -1,0 +1,473 @@
+
+.reportes {
+    padding: 24px;
+    color: #1e293b;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.reportes-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.reportes-header h1 {
+    margin: 0 0 6px;
+    font-size: 26px;
+    font-weight: 700;
+}
+
+.reportes-header p {
+    margin: 0;
+    color: #64748b;
+    font-size: 14px;
+}
+
+.reportes-filtros {
+    display: flex;
+    align-items: end;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding: 18px;
+    margin-bottom: 24px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+}
+
+.reportes-filtros label {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    color: #475569;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.reportes-filtros input,
+.reportes-filtros select {
+    min-width: 175px;
+    padding: 10px 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #1e293b;
+    font: inherit;
+    font-weight: 400;
+    box-sizing: border-box;
+}
+
+.reportes-filtros input:focus,
+.reportes-filtros select:focus {
+    outline: 2px solid #bfdbfe;
+    border-color: #3b82f6;
+}
+
+.reportes-filtros button {
+    padding: 10px 15px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    background: #f8fafc;
+    color: #334155;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.reportes-filtros button:hover {
+    background: #e2e8f0;
+}
+
+.reportes-tarjetas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(155px, 1fr));
+    gap: 16px;
+    margin-bottom: 28px;
+}
+
+.reporte-card {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    min-height: 105px;
+    padding: 20px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    box-sizing: border-box;
+}
+
+.reporte-card span {
+    color: #64748b;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.reporte-card strong {
+    color: #0f172a;
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.reportes-tabla {
+    padding: 20px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+}
+
+.reportes-tabla h2 {
+    margin: 0 0 18px;
+    color: #1e293b;
+    font-size: 18px;
+}
+
+.reportes-tabla-contenedor {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.reportes-tabla table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 14px;
+}
+
+.reportes-tabla th {
+    padding: 13px 14px;
+    background: #f8fafc;
+    color: #475569;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.reportes-tabla td {
+    padding: 14px;
+    border-bottom: 1px solid #e2e8f0;
+    color: #334155;
+}
+
+.reportes-tabla tbody tr:hover {
+    background: #f8fafc;
+}
+
+.reportes-tabla tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.reportes-error {
+    padding: 14px;
+    border: 1px solid #fecaca;
+    border-radius: 8px;
+    background: #fef2f2;
+    color: #b91c1c;
+}
+
+@media (max-width: 600px) {
+    .reportes {
+        padding: 16px;
+    }
+
+    .reportes-filtros {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .reportes-filtros input,
+    .reportes-filtros select {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .reportes-filtros button {
+        min-height: 42px;
+    }
+
+    .reportes-tabla {
+        padding: 14px;
+    }
+}
+
+.reportes-descripcion {
+    margin: -8px 0 18px;
+    color: #64748b;
+    font-size: 14px;
+}
+
+.reportes-grafico {
+    padding: 22px;
+    margin-bottom: 24px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+}
+
+.reportes-grafico-header h2 {
+    margin: 0 0 6px;
+    color: #1e293b;
+    font-size: 18px;
+}
+
+.reportes-grafico-header p {
+    margin: 0;
+    color: #64748b;
+    font-size: 14px;
+}
+
+.reportes-grafico-contenedor {
+    width: 100%;
+    height: 280px;
+    margin-top: 20px;
+}
+
+@media (max-width: 600px) {
+    .reportes-grafico {
+        padding: 14px;
+    }
+
+    .reportes-grafico-contenedor {
+        height: 240px;
+    }
+}
+
+.reportes-comparacion {
+    display: grid;
+    grid-template-columns: 100px minmax(50px, 1fr) 100px;
+    align-items: center;
+    gap: 16px;
+    margin-top: 24px;
+}
+
+.reportes-comparacion-dato {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+    min-width: 0;
+}
+
+.reportes-comparacion-dato.derecha {
+    align-items: flex-end;
+    text-align: right;
+}
+
+.texto-puntuales {
+    color: #3b82f6;
+    font-size: 13px;
+}
+
+.texto-tardanzas {
+    color: #f43f5e;
+    font-size: 13px;
+}
+
+.reportes-comparacion-porcentaje {
+    color: #1e293b;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.reportes-comparacion-cantidad {
+    color: #64748b;
+    font-size: 12px;
+}
+
+.reportes-comparacion-barra {
+    display: flex;
+    height: 12px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: #e2e8f0;
+}
+
+.barra-puntuales {
+    background: #3b82f6;
+    transition: width 0.3s ease;
+}
+
+.barra-tardanzas {
+    background: #f43f5e;
+    transition: width 0.3s ease;
+}
+
+@media (max-width: 480px) {
+    .reportes-comparacion {
+        grid-template-columns: 80px minmax(30px, 1fr) 80px;
+        gap: 8px;
+    }
+
+    .reportes-comparacion-porcentaje {
+        font-size: 20px;
+    }
+}
+
+.reportes-leyenda {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin: 22px 0;
+}
+
+.reportes-leyenda span {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    color: #475569;
+    font-size: 13px;
+}
+
+.reportes-leyenda i {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 3px;
+}
+
+.reportes-punto-azul {
+    background: #3b82f6;
+}
+
+.reportes-punto-rojo {
+    background: #f43f5e;
+}
+
+.reportes-barras-practicantes {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.reportes-fila-practicante {
+    display: grid;
+    grid-template-columns: minmax(90px, 150px) minmax(50px, 1fr) 30px;
+    align-items: center;
+    gap: 14px;
+}
+
+.reportes-nombre-practicante {
+    color: #334155;
+    font-size: 13px;
+    font-weight: 600;
+    overflow-wrap: anywhere;
+}
+
+.reportes-barra-practicante {
+    display: flex;
+    width: 100%;
+    height: 16px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: #e2e8f0;
+}
+
+.reportes-barra-azul {
+    height: 100%;
+    background: #3b82f6;
+    transition: width 0.3s ease;
+}
+
+.reportes-barra-roja {
+    height: 100%;
+    background: #f43f5e;
+    transition: width 0.3s ease;
+}
+
+.reportes-total-practicante {
+    color: #64748b;
+    font-size: 13px;
+    text-align: right;
+    font-weight: 600;
+}
+
+@media (max-width: 480px) {
+    .reportes-fila-practicante {
+        grid-template-columns: minmax(75px, 100px) minmax(40px, 1fr) 24px;
+        gap: 8px;
+    }
+
+    .reportes-nombre-practicante,
+    .reportes-total-practicante {
+        font-size: 12px;
+    }
+
+    .reportes-barra-practicante {
+        height: 13px;
+    }
+}
+
+/* Gráficos en una sola fila */
+.reportes-graficos-conjuntos {
+    display: grid;
+    grid-template-columns: minmax(0, 3fr) minmax(0, 7fr);
+    gap: 20px;
+    align-items: stretch;
+}
+
+.reportes-graficos-conjuntos > .reportes-grafico {
+    min-width: 0;
+    margin: 0;
+}
+
+/* Espacio de la dona */
+.reportes-dona-contenedor {
+    position: relative;
+    width: 100%;
+    height: 220px;
+    max-width: 260px;
+    margin: 12px auto 0;
+}
+
+.reportes-dona-centro {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+}
+
+.reportes-dona-centro strong {
+    color: #1e293b;
+    font-size: 27px;
+    font-weight: 700;
+}
+
+.reportes-dona-centro span {
+    color: #64748b;
+    font-size: 12px;
+}
+
+.reportes-leyenda-dona {
+    justify-content: center;
+    gap: 10px 16px;
+    margin-top: 8px;
+}
+
+.reportes-leyenda-dona span {
+    font-size: 12px;
+}
+
+/* Aprovechar el espacio de comparación */
+.reportes-grafico-practicantes .reportes-barras-practicantes {
+    gap: 18px;
+}
+
+.reportes-grafico-practicantes .reportes-fila-practicante {
+    grid-template-columns: minmax(80px, 145px) minmax(40px, 1fr) 28px;
+    gap: 10px;
+}
+
+/* En pantallas pequeñas, colocar uno debajo del otro */
+@media (max-width: 700px) {
+    .reportes-graficos-conjuntos {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .reportes-dona-contenedor {
+        height: 210px;
+    }
+}

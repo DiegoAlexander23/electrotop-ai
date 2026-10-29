@@ -83,6 +83,12 @@ function TablaHorarios({ horarios, onVerHorario, onEditar, onEliminar }) {
                                             >
                                                 Editar
                                             </button>
+                                            <button
+                                                type="button"
+                                                onClick={() => onEliminar(practicante.practicante_id)}
+                                            >
+                                                Eliminar
+                                            </button>
                                         </div>
                                     </td>
                                 </tr>
