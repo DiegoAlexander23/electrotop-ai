@@ -4,6 +4,7 @@ import authRoutes from "./routes/auth.routes.js";
 import practicantesRoutes from "./routes/practicantes.routes.js";
 import horariosRoutes from "./routes/horarios.routes.js";
 import asistenciasRoutes from "./routes/asistencias.routes.js";
+import whatsappRoutes from "./routes/whatsapp.routes.js";
 
 const app = express();
 
@@ -17,5 +18,6 @@ app.use("/api/auth", authRoutes);
 app.use("/api/practicantes", practicantesRoutes);
 app.use("/api/horarios", horariosRoutes);
 app.use("/api/asistencias", asistenciasRoutes);
+app.use("/api/whatsapp", whatsappRoutes);
 
 export default app;

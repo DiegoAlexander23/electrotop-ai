@@ -241,137 +241,138 @@ const resumenPracticantes = practicantes
             </section>
 
 
-
-
-<section className="reportes-graficos-conjuntos">
-    {/* Gráfico de dona: 30% */}
-    <section className="reportes-grafico reportes-grafico-dona">
-        <div className="reportes-grafico-header">
-            <h2>Puntualidad general</h2>
-            <p>Distribución de entradas evaluadas.</p>
-        </div>
-
-        <div className="reportes-dona-contenedor">
-            {totalEvaluadas === 0 ? (
-                <p className="reportes-vs-vacio">
-                    No hay entradas evaluables.
-                </p>
-            ) : (
-                <>
-                    <ResponsiveContainer width="100%" height="100%">
-                        <PieChart>
-                            <Pie
-                                data={datosGraficoPuntualidad}
-                                dataKey="cantidad"
-                                nameKey="estado"
-                                innerRadius="62%"
-                                outerRadius="88%"
-                                paddingAngle={2}
-                                stroke="none"
-                            >
-                                {datosGraficoPuntualidad.map((dato, index) => (
-                                    <Cell
-                                        key={dato.estado}
-                                        fill={index === 0 ? "#3b82f6" : "#f43f5e"}
-                                    />
-                                ))}
-                            </Pie>
-
-                            <Tooltip
-                                formatter={(value, name) => [
-                                    `${value} entradas`,
-                                    name,
-                                ]}
-                            />
-                        </PieChart>
-                    </ResponsiveContainer>
-
-                    <div className="reportes-dona-centro">
-                        <strong>{porcentajePuntuales}%</strong>
-                        <span>Puntuales</span>
+            <section className="reportes-graficos-conjuntos">
+                {/* Dona general */}
+                <section className="reportes-grafico reportes-grafico-dona">
+                    <div className="reportes-grafico-header">
+                        <h2>Puntualidad general</h2>
+                        <p>Distribución de entradas evaluadas.</p>
                     </div>
-                </>
-            )}
-        </div>
 
-        <div className="reportes-leyenda reportes-leyenda-dona">
-            <span>
-                <i className="reportes-punto-azul" />
-                Puntuales ({puntuales.length})
-            </span>
-            <span>
-                <i className="reportes-punto-rojo" />
-                Tardanzas ({tardanzas.length})
-            </span>
-        </div>
-    </section>
+                    <div className="reportes-dona-contenedor">
+                        {totalEvaluadas === 0 ? (
+                            <p className="reportes-vs-vacio">
+                                No hay entradas evaluables.
+                            </p>
+                        ) : (
+                            <>
+                                <ResponsiveContainer width="100%" height="100%">
+                                    <PieChart>
+                                        <Pie
+                                            data={datosGraficoPuntualidad}
+                                            dataKey="cantidad"
+                                            nameKey="estado"
+                                            innerRadius="62%"
+                                            outerRadius="88%"
+                                            paddingAngle={2}
+                                            stroke="none"
+                                        >
+                                            {datosGraficoPuntualidad.map((dato, index) => (
+                                                <Cell
+                                                    key={dato.estado}
+                                                    fill={index === 0 ? "#3b82f6" : "#f43f5e"}
+                                                />
+                                            ))}
+                                        </Pie>
 
-    {/* Comparación por practicante: 70% */}
-    <section className="reportes-grafico reportes-grafico-practicantes">
-        <div className="reportes-grafico-header">
-            <h2>Entradas por practicante</h2>
-            <p>Comparación durante el período seleccionado.</p>
-        </div>
+                                        <Tooltip
+                                            formatter={(value, name) => [
+                                                `${value} entradas`,
+                                                name,
+                                            ]}
+                                        />
+                                    </PieChart>
+                                </ResponsiveContainer>
 
-        <div className="reportes-leyenda">
-            <span>
-                <i className="reportes-punto-azul" />
-                Puntual
-            </span>
-            <span>
-                <i className="reportes-punto-rojo" />
-                Tardanza
-            </span>
-        </div>
-
-        <div className="reportes-barras-practicantes">
-            {resumenPracticantes.filter(
-                (p) => p.puntuales + p.tardanzas > 0
-            ).length === 0 ? (
-                <p>No hay entradas evaluables para comparar.</p>
-            ) : (
-                resumenPracticantes
-                    .filter((p) => p.puntuales + p.tardanzas > 0)
-                    .map((p) => {
-                        const total = p.puntuales + p.tardanzas;
-                        const porcentajeAzul = (p.puntuales / total) * 100;
-                        const porcentajeRojo = (p.tardanzas / total) * 100;
-
-                        return (
-                            <div
-                                className="reportes-fila-practicante"
-                                key={p.id}
-                            >
-                                <span className="reportes-nombre-practicante">
-                                    {p.nombre}
-                                </span>
-
-                                <div
-                                    className="reportes-barra-practicante"
-                                    role="img"
-                                    aria-label={`${p.nombre}: ${p.puntuales} entradas puntuales y ${p.tardanzas} tardanzas`}
-                                >
-                                    <div
-                                        className="reportes-barra-azul"
-                                        style={{ width: `${porcentajeAzul}%` }}
-                                    />
-                                    <div
-                                        className="reportes-barra-roja"
-                                        style={{ width: `${porcentajeRojo}%` }}
-                                    />
+                                <div className="reportes-dona-centro">
+                                    <strong>{porcentajePuntuales}%</strong>
+                                    <span>Puntuales</span>
                                 </div>
+                            </>
+                        )}
+                    </div>
 
-                                <span className="reportes-total-practicante">
-                                    {total}
-                                </span>
-                            </div>
-                        );
-                    })
-            )}
-        </div>
-    </section>
-</section>
+                    <div className="reportes-leyenda reportes-leyenda-dona">
+                        <span>
+                            <i className="reportes-punto-azul" />
+                            Puntuales ({puntuales.length})
+                        </span>
+                        <span>
+                            <i className="reportes-punto-rojo" />
+                            Tardanzas ({tardanzas.length})
+                        </span>
+                    </div>
+                </section>
 
+                {/* Comparación por practicante */}
+                <section className="reportes-grafico reportes-grafico-practicantes">
+                    <div className="reportes-grafico-header">
+                        <h2>Entradas por practicante</h2>
+                        <p>Comparación durante el período seleccionado.</p>
+                    </div>
+
+                    <div className="reportes-leyenda">
+                        <span>
+                            <i className="reportes-punto-azul" />
+                            Puntual
+                        </span>
+                        <span>
+                            <i className="reportes-punto-rojo" />
+                            Tardanza
+                        </span>
+                        <span>
+                            <i className="reportes-punto-gris" />
+                            Sin marcación
+                        </span>
+                    </div>
+
+                    <div className="reportes-barras-practicantes">
+                        {resumenPracticantes.filter(
+                            (p) => p.puntuales + p.tardanzas > 0
+                        ).length === 0 ? (
+                            <p>No hay entradas evaluables para comparar.</p>
+                        ) : (
+                            resumenPracticantes
+                                .filter((p) => p.puntuales + p.tardanzas > 0)
+                                .map((p) => {
+                                    const total = p.puntuales + p.tardanzas;
+                                    const porcentajeAzul = (p.puntuales / total) * 100;
+                                    const porcentajeRojo = (p.tardanzas / total) * 100;
+
+                                    return (
+                                        <div
+                                            className="reportes-fila-practicante"
+                                            key={p.id}
+                                        >
+                                            <span className="reportes-nombre-practicante">
+                                                {p.nombre}
+                                            </span>
+
+                                            <div
+                                                className="reportes-barra-practicante"
+                                                role="img"
+                                                aria-label={`${p.nombre}: ${p.puntuales} puntuales y ${p.tardanzas} tardanzas`}
+                                            >
+                                                <div
+                                                    className="reportes-barra-azul"
+                                                    style={{ width: `${porcentajeAzul}%` }}
+                                                />
+                                                <div
+                                                    className="reportes-barra-roja"
+                                                    style={{ width: `${porcentajeRojo}%` }}
+                                                />
+                                            </div>
+
+                                            <span className="reportes-total-practicante">
+                                                {total}
+                                            </span>
+                                        </div>
+                                    );
+                                })
+                        )}
+                    </div>
+                </section>
+            </section>
 
 
             <section className="reportes-tabla">

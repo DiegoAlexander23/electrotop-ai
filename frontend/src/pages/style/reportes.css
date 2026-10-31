@@ -398,7 +398,6 @@
     }
 }
 
-/* Gráficos en una sola fila */
 .reportes-graficos-conjuntos {
     display: grid;
     grid-template-columns: minmax(0, 3fr) minmax(0, 7fr);
@@ -411,7 +410,6 @@
     margin: 0;
 }
 
-/* Espacio de la dona */
 .reportes-dona-contenedor {
     position: relative;
     width: 100%;
@@ -451,7 +449,6 @@
     font-size: 12px;
 }
 
-/* Aprovechar el espacio de comparación */
 .reportes-grafico-practicantes .reportes-barras-practicantes {
     gap: 18px;
 }
@@ -461,7 +458,82 @@
     gap: 10px;
 }
 
-/* En pantallas pequeñas, colocar uno debajo del otro */
+@media (max-width: 700px) {
+    .reportes-graficos-conjuntos {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .reportes-dona-contenedor {
+        height: 210px;
+    }
+}
+
+/* Distribución de los dos gráficos */
+.reportes-graficos-conjuntos {
+    display: grid;
+    grid-template-columns: minmax(0, 3fr) minmax(0, 7fr);
+    gap: 20px;
+    align-items: stretch;
+}
+
+.reportes-graficos-conjuntos > .reportes-grafico {
+    min-width: 0;
+    margin: 0;
+}
+
+/* Gráfico de dona */
+.reportes-dona-contenedor {
+    position: relative;
+    width: 100%;
+    height: 220px;
+    max-width: 260px;
+    margin: 12px auto 0;
+}
+
+.reportes-dona-centro {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+}
+
+.reportes-dona-centro strong {
+    color: #1e293b;
+    font-size: 27px;
+    font-weight: 700;
+}
+
+.reportes-dona-centro span {
+    color: #64748b;
+    font-size: 12px;
+}
+
+.reportes-leyenda-dona {
+    justify-content: center;
+    gap: 10px 16px;
+    margin-top: 8px;
+}
+
+.reportes-leyenda-dona span {
+    font-size: 12px;
+}
+
+.reportes-punto-gris {
+    background: #94a3b8;
+}
+
+.reportes-grafico-practicantes .reportes-barras-practicantes {
+    gap: 18px;
+}
+
+.reportes-grafico-practicantes .reportes-fila-practicante {
+    grid-template-columns: minmax(80px, 145px) minmax(40px, 1fr) 28px;
+    gap: 10px;
+}
+
 @media (max-width: 700px) {
     .reportes-graficos-conjuntos {
         grid-template-columns: minmax(0, 1fr);
